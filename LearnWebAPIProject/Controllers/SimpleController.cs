@@ -16,17 +16,22 @@ namespace LearnWebAPIProject.Controllers
         // This is an action method that handles HTTP GET requests.
         // It can be accessed at the URL: /api/simple
         [HttpGet]
-        public IEnumerable<Product> Get()
+        public ActionResult<IEnumerable<Product>> Get()
         {
-            return _products;
+            return Ok(_products);
         }
 
         // This action handles GET requests to /api/simple/{id}
         // For example: /api/simple/1
         [HttpGet("{id}")]
-        public Product? GetById(int id)
+        public ActionResult<Product> GetById(int id)
         {
-            return _products.FirstOrDefault(p => p.Id == id);
+            var product = _products.FirstOrDefault(p => p.Id == id);
+            if (product == null)
+            {
+                return NotFound(); // Returns a 404 Not Found response
+            }
+            return Ok(product); // Returns a 200 OK response with the product
         }
     }
 }

@@ -21,3 +21,10 @@ Routing is the mechanism that maps incoming HTTP requests to controller actions.
 -   **Route Parameters**: You can define parameters in your route templates, such as `[HttpGet("{id}")]`. This allows you to capture values from the URL and use them in your action methods.
 
 Commit: https://github.com/csokmen/learn-asp.net-core-web-api/commit/168f2a19b7aefce39734a3251d3198461aa6fecd
+
+## 3. Action Results
+
+Action results are the return types of controller actions. They are responsible for generating the HTTP response. While an action can return a simple type or object (which ASP.NET Core wraps in a 200 OK response), using `ActionResult` provides more control.
+
+-   **Specific Action Results**: Methods like `Ok()`, `NotFound()`, `BadRequest()`, and `CreatedAtAction()` return specific HTTP status codes. For example, `NotFound()` produces a 404 status code.
+-   **`ActionResult<T>`**: This return type allows an action to return either a specific type `T` (which results in a 200 OK) or any other action result. This provides type safety for your API's response while maintaining flexibility.
