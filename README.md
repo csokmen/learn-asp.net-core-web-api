@@ -28,3 +28,5 @@ Action results are the return types of controller actions. They are responsible 
 
 -   **Specific Action Results**: Methods like `Ok()`, `NotFound()`, `BadRequest()`, and `CreatedAtAction()` return specific HTTP status codes. For example, `NotFound()` produces a 404 status code.
 -   **`ActionResult<T>`**: This return type allows an action to return either a specific type `T` (which results in a 200 OK) or any other action result. This provides type safety for your API's response while maintaining flexibility.
+
+Commit: https://github.com/csokmen/learn-asp.net-core-web-api/commit/5ce6b6514c570a69e38ecb6a7f2a3eee39af57be
