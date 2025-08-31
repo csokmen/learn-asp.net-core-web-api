@@ -52,4 +52,4 @@ Dependency Injection (DI) is a design pattern used to achieve Inversion of Contr
     -   **Transient**: A new instance is created every time it is requested.
 -   **Usage**: We will create an interface (`IProductService`) and a concrete implementation (`ProductService`). We then register the service in `Program.cs` and inject the interface into our controller's constructor. This decouples the controller from the specific data implementation.
 
-Commit: 
+Commit: https://github.com/csokmen/learn-asp.net-core-web-api/commit/07a339c5e7297f4490bcd66e3263f857e41d3150
