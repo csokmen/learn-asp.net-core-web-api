@@ -1,4 +1,5 @@
 ﻿using LearnWebAPIProject.Models;
+using LearnWebAPIProject.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LearnWebAPIProject.Controllers
@@ -7,26 +8,25 @@ namespace LearnWebAPIProject.Controllers
     [ApiController]
     public class SimpleController : ControllerBase
     {
-        private static readonly List<Product> _products = new List<Product>
-        {
-            new Product { Id = 1, Name = "Product A" },
-            new Product { Id = 2, Name = "Product B" }
-        };
+        private readonly IProductService _productService;
 
-        // This is an action method that handles HTTP GET requests.
-        // It can be accessed at the URL: /api/simple
+        public SimpleController(IProductService productService)
+        {
+            _productService = productService;
+        }
+
+        // GET: api/simple
         [HttpGet]
         public ActionResult<IEnumerable<Product>> Get()
         {
-            return Ok(_products);
+            return Ok(_productService.GetProducts());
         }
 
-        // This action handles GET requests to /api/simple/{id}
-        // For example: /api/simple/1
+        // GET: api/simple/5
         [HttpGet("{id}")]
         public ActionResult<Product> GetById(int id)
         {
-            var product = _products.FirstOrDefault(p => p.Id == id);
+            var product = _productService.GetProductById(id);
             if (product == null)
             {
                 return NotFound(); // Returns a 404 Not Found response
@@ -38,10 +38,10 @@ namespace LearnWebAPIProject.Controllers
         [HttpPost]
         public ActionResult<Product> PostProduct(Product product)
         {
-            product.Id = _products.Any() ? _products.Max(p => p.Id) + 1 : 1;
-            _products.Add(product);
+            var newProduct = _productService.AddProduct(product);
 
-            return CreatedAtAction(nameof(GetById), new { id = product.Id }, product);
+            return CreatedAtAction(nameof(GetById), new { id = newProduct.Id }, newProduct);
         }
     }
+}
 }

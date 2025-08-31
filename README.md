@@ -41,3 +41,15 @@ Model binding is the process where ASP.NET Core automatically maps data from an 
 When you create a `POST` action that takes a `Product` object as a parameter, the framework handles the work of converting the incoming JSON into a `Product` instance for you.
 
 Commit: https://github.com/csokmen/learn-asp.net-core-web-api/commit/c505ddea1df12dbfb7fa14a90878f38ea44c2ce2
+
+## 5. Dependency Injection
+
+Dependency Injection (DI) is a design pattern used to achieve Inversion of Control (IoC). Instead of a component creating its own dependencies, the dependencies are "injected" from an external source. ASP.NET Core has a built-in DI container.
+
+-   **Service Lifetime**: When registering a service, you define its lifetime:
+    -   **Singleton**: A single instance is created for the entire application lifetime.
+    -   **Scoped**: A new instance is created for each client request (connection).
+    -   **Transient**: A new instance is created every time it is requested.
+-   **Usage**: We will create an interface (`IProductService`) and a concrete implementation (`ProductService`). We then register the service in `Program.cs` and inject the interface into our controller's constructor. This decouples the controller from the specific data implementation.
+
+Commit: 
