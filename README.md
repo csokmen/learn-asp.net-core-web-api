@@ -39,3 +39,5 @@ Model binding is the process where ASP.NET Core automatically maps data from an 
 -   **`[FromRoute]`**, **`[FromQuery]`**: These attributes explicitly specify that a parameter should be bound from the route or the query string, respectively.
 
 When you create a `POST` action that takes a `Product` object as a parameter, the framework handles the work of converting the incoming JSON into a `Product` instance for you.
+
+Commit: https://github.com/csokmen/learn-asp.net-core-web-api/commit/c505ddea1df12dbfb7fa14a90878f38ea44c2ce2
