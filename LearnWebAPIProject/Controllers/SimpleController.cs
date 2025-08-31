@@ -33,5 +33,15 @@ namespace LearnWebAPIProject.Controllers
             }
             return Ok(product); // Returns a 200 OK response with the product
         }
+
+        // POST: api/simple
+        [HttpPost]
+        public ActionResult<Product> PostProduct(Product product)
+        {
+            product.Id = _products.Any() ? _products.Max(p => p.Id) + 1 : 1;
+            _products.Add(product);
+
+            return CreatedAtAction(nameof(GetById), new { id = product.Id }, product);
+        }
     }
 }

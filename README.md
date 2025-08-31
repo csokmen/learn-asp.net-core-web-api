@@ -30,3 +30,12 @@ Action results are the return types of controller actions. They are responsible 
 -   **`ActionResult<T>`**: This return type allows an action to return either a specific type `T` (which results in a 200 OK) or any other action result. This provides type safety for your API's response while maintaining flexibility.
 
 Commit: https://github.com/csokmen/learn-asp.net-core-web-api/commit/5ce6b6514c570a69e38ecb6a7f2a3eee39af57be
+
+## 4. Model Binding
+
+Model binding is the process where ASP.NET Core automatically maps data from an HTTP request to the parameters of an action method. This allows you to work directly with strongly-typed objects.
+
+-   **`[FromBody]`**: For a `[HttpPost]` or `[HttpPut]` request, the `[FromBody]` attribute tells the framework to deserialize the request body (typically JSON) into a complex object. With the `[ApiController]` attribute, `[FromBody]` is often inferred for complex type parameters.
+-   **`[FromRoute]`**, **`[FromQuery]`**: These attributes explicitly specify that a parameter should be bound from the route or the query string, respectively.
+
+When you create a `POST` action that takes a `Product` object as a parameter, the framework handles the work of converting the incoming JSON into a `Product` instance for you.
