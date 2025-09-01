@@ -1,29 +1,32 @@
-﻿using LearnWebAPIProject.Models;
+﻿using LearnWebAPIProject.Data;
+using LearnWebAPIProject.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace LearnWebAPIProject.Services
 {
     public class ProductService : IProductService
     {
-        private readonly List<Product> _products = new List<Product>
-        {
-            new Product { Id = 1, Name = "Product A" },
-            new Product { Id = 2, Name = "Product B" }
-        };
+        private readonly DataContext _context;
 
-        public IEnumerable<Product> GetProducts()
+        public ProductService(DataContext context)
         {
-            return _products;
+            _context = context;
         }
 
-        public Product? GetProductById(int id)
+        public async Task<IEnumerable<Product>> GetProducts()
         {
-            return _products.FirstOrDefault(p => p.Id == id);
+            return await _context.Products.ToListAsync();
         }
 
-        public Product AddProduct(Product product)
+        public async Task<Product?> GetProductById(int id)
         {
-            product.Id = _products.Any() ? _products.Max(p => p.Id) + 1 : 1;
-            _products.Add(product);
+            return await _context.Products.FindAsync(id);
+        }
+
+        public async Task<Product> AddProduct(Product product)
+        {
+            _context.Products.Add(product);
+            await _context.SaveChangesAsync();
             return product;
         }
     }

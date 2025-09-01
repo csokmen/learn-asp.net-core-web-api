@@ -17,16 +17,17 @@ namespace LearnWebAPIProject.Controllers
 
         // GET: api/simple
         [HttpGet]
-        public ActionResult<IEnumerable<Product>> Get()
+        public async Task<ActionResult<IEnumerable<Product>>> Get()
         {
-            return Ok(_productService.GetProducts());
+            var products = await _productService.GetProducts();
+            return Ok(products);
         }
 
         // GET: api/simple/5
         [HttpGet("{id}")]
-        public ActionResult<Product> GetById(int id)
+        public async Task<ActionResult<Product>> GetById(int id)
         {
-            var product = _productService.GetProductById(id);
+            var product = await _productService.GetProductById(id);
             if (product == null)
             {
                 return NotFound(); // Returns a 404 Not Found response
@@ -36,9 +37,9 @@ namespace LearnWebAPIProject.Controllers
 
         // POST: api/simple
         [HttpPost]
-        public ActionResult<Product> PostProduct(Product product)
+        public async Task<ActionResult<Product>> PostProduct(Product product)
         {
-            var newProduct = _productService.AddProduct(product);
+            var newProduct = await _productService.AddProduct(product);
 
             return CreatedAtAction(nameof(GetById), new { id = newProduct.Id }, newProduct);
         }

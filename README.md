@@ -53,3 +53,13 @@ Dependency Injection (DI) is a design pattern used to achieve Inversion of Contr
 -   **Usage**: We will create an interface (`IProductService`) and a concrete implementation (`ProductService`). We then register the service in `Program.cs` and inject the interface into our controller's constructor. This decouples the controller from the specific data implementation.
 
 Commit: https://github.com/csokmen/learn-asp.net-core-web-api/commit/07a339c5e7297f4490bcd66e3263f857e41d3150
+
+## 6. Using Entity Framework Core
+
+To persist data, we use Entity Framework (EF) Core. It's an object-relational mapper (O/RM) that simplifies database interactions.
+
+-   **`DbContext`**: This class represents a session with the database and is used to query and save data. You create a class that inherits from `DbContext` and contains `DbSet<T>` properties for each entity (table) in your model.
+-   **In-Memory Database**: For development and testing, EF Core can use an in-memory database. This is useful because it doesn't require setting up a real database server.
+-   **Async Operations**: Database operations are I/O-bound and should be performed asynchronously using `async` and `await` to avoid blocking threads. This means our service and controller methods will return `Task<T>`.
+
+Commit: 
