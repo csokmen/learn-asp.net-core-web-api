@@ -62,4 +62,4 @@ To persist data, we use Entity Framework (EF) Core. It's an object-relational ma
 -   **In-Memory Database**: For development and testing, EF Core can use an in-memory database. This is useful because it doesn't require setting up a real database server.
 -   **Async Operations**: Database operations are I/O-bound and should be performed asynchronously using `async` and `await` to avoid blocking threads. This means our service and controller methods will return `Task<T>`.
 
-Commit: 
+Commit: https://github.com/csokmen/learn-asp.net-core-web-api/commit/f566f04b543de1e55f9cc5bd2c5d0a6c99f87e3a
