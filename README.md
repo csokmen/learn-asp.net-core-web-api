@@ -70,4 +70,4 @@ To complement our EF Core implementation, we will add a new controller that uses
 -   **Dapper Context**: A separate context class will manage the database connection for Dapper.
 -   **Separate Service**: To maintain a clean architecture, a new service layer (`IDapperProductService` and `DapperProductService`) will be created specifically for Dapper-based operations.
 
-Commit: 
+Commit: https://github.com/csokmen/learn-asp.net-core-web-api/commit/183736116839aff27cc183e94334b1240d4b7c33
