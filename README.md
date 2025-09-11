@@ -61,3 +61,13 @@ To persist data, we use Entity Framework (EF) Core. It's an object-relational ma
 -   **Async Operations**: Database operations are I/O-bound and should be performed asynchronously using `async` and `await` to avoid blocking threads. This means our service and controller methods will return `Task<T>`.
 
 Commit: https://github.com/csokmen/learn-asp.net-core-web-api/commit/f566f04b543de1e55f9cc5bd2c5d0a6c99f87e3a
+
+## 7. Adding Dapper for High-Performance Data Access
+
+To complement our EF Core implementation, we will add a new controller that uses **Dapper**, a high-performance micro-ORM. This allows for direct execution of raw SQL queries, which can be beneficial for performance-critical operations.
+
+-   **New Controller**: A `DapperProductsController` will be created to handle requests using Dapper.
+-   **Dapper Context**: A separate context class will manage the database connection for Dapper.
+-   **Separate Service**: To maintain a clean architecture, a new service layer (`IDapperProductService` and `DapperProductService`) will be created specifically for Dapper-based operations.
+
+Commit: 

@@ -16,6 +16,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IProductService, ProductService>();
 
+builder.Services.AddSingleton<DapperContext>();
+builder.Services.AddScoped<IDapperProductService, DapperProductService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
