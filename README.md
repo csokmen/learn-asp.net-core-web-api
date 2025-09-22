@@ -78,3 +78,5 @@ A **Data Transfer Object (DTO)** is an object that carries data between processe
 
 -   **Manual Mapping**: Instead of using a library like AutoMapper, we will perform the object-to-object mapping manually. This can be done with simple methods or directly within the controller and service layers.
 -   **Controller Update**: The `DapperProductsController` will be updated to receive and return DTOs, while the service layer will handle mapping from DTOs to the internal `Product` entity.
+
+Commit: https://github.com/csokmen/learn-asp.net-core-web-api/commit/a67eccb3534dbddefac935b4e87ce6de9c895fae
