@@ -71,3 +71,10 @@ To complement our EF Core implementation, we will add a new controller that uses
 -   **Separate Service**: To maintain a clean architecture, a new service layer (`IDapperProductService` and `DapperProductService`) will be created specifically for Dapper-based operations.
 
 Commit: https://github.com/csokmen/learn-asp.net-core-web-api/commit/183736116839aff27cc183e94334b1240d4b7c33
+
+## 8. DTOs and Manual Mapping
+
+A **Data Transfer Object (DTO)** is an object that carries data between processes. In Web APIs, we use DTOs to shape the data that is sent to and from the client. This decouples our internal database models from the public API contract.
+
+-   **Manual Mapping**: Instead of using a library like AutoMapper, we will perform the object-to-object mapping manually. This can be done with simple methods or directly within the controller and service layers.
+-   **Controller Update**: The `DapperProductsController` will be updated to receive and return DTOs, while the service layer will handle mapping from DTOs to the internal `Product` entity.

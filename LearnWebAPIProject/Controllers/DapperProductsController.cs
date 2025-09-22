@@ -1,4 +1,4 @@
-﻿using LearnWebAPIProject.Models;
+﻿using LearnWebAPIProject.Dtos;
 using LearnWebAPIProject.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,30 +17,42 @@ namespace LearnWebAPIProject.Controllers
 
         // GET: api/dapperproducts
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> Get()
+        public async Task<ActionResult<IEnumerable<ProductDto>>> Get()
         {
             var products = await _productService.GetProducts();
-            return Ok(products);
+
+            // Manual mapping from entity to DTO
+            var productDtos = products.Select(p => new ProductDto { Id = p.Id, Name = p.Name });
+
+            return Ok(productDtos);
         }
 
         // GET: api/dapperproducts/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetById(int id)
+        public async Task<ActionResult<ProductDto>> GetById(int id)
         {
             var product = await _productService.GetProductById(id);
             if (product == null)
             {
                 return NotFound();
             }
-            return Ok(product);
+
+            // Manual mapping from entity to DTO
+            var productDto = new ProductDto { Id = product.Id, Name = product.Name };
+
+            return Ok(productDto);
         }
 
         // POST: api/dapperproducts
         [HttpPost]
-        public async Task<ActionResult<Product>> PostProduct(Product product)
+        public async Task<ActionResult<ProductDto>> PostProduct(CreateProductDto createProductDto)
         {
-            var newProduct = await _productService.AddProduct(product);
-            return CreatedAtAction(nameof(GetById), new { id = newProduct.Id }, newProduct);
+            var newProduct = await _productService.AddProduct(createProductDto);
+
+            // Manual mapping from entity to DTO
+            var productDto = new ProductDto { Id = newProduct.Id, Name = newProduct.Name };
+
+            return CreatedAtAction(nameof(GetById), new { id = productDto.Id }, productDto);
         }
     }
 }

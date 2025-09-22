@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using LearnWebAPIProject.Data;
+using LearnWebAPIProject.Dtos;
 using LearnWebAPIProject.Models;
 
 namespace LearnWebAPIProject.Services
@@ -33,12 +34,20 @@ namespace LearnWebAPIProject.Services
             }
         }
 
-        public async Task<Product> AddProduct(Product product)
+        public async Task<Product> AddProduct(CreateProductDto createProductDto)
         {
+            // Manual mapping from DTO to entity
+            var product = new Product
+            {
+                Name = createProductDto.Name
+            };
+
             var query = "INSERT INTO Products (Name) VALUES (@Name); SELECT CAST(SCOPE_IDENTITY() as int)";
             using (var connection = _context.CreateConnection())
             {
                 var id = await connection.QuerySingleAsync<int>(query, new { product.Name });
+
+                // Return the full product object after creation
                 var createdProduct = new Product { Id = id, Name = product.Name };
                 return createdProduct;
             }

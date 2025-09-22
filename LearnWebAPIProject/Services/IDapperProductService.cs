@@ -1,4 +1,5 @@
-﻿using LearnWebAPIProject.Models;
+﻿using LearnWebAPIProject.Dtos;
+using LearnWebAPIProject.Models;
 
 namespace LearnWebAPIProject.Services
 {
@@ -6,6 +7,6 @@ namespace LearnWebAPIProject.Services
     {
         Task<IEnumerable<Product>> GetProducts();
         Task<Product?> GetProductById(int id);
-        Task<Product> AddProduct(Product product);
+        Task<Product> AddProduct(CreateProductDto createProductDto);
     }
 }
