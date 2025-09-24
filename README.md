@@ -88,3 +88,5 @@ To complete our CRUD (Create, Read, Update, Delete) functionality, we need to ha
 -   **`[HttpPut("{id}")]`**: This attribute is used for update operations. A `PUT` request should contain the full updated resource. The action typically returns `NoContent()` (204) on success, `BadRequest()` if the URL ID and body ID don't match, or `NotFound()` if the resource doesn't exist.
 -   **`[HttpDelete("{id}")]`**: This attribute is used for delete operations. The action takes the ID of the resource to delete and returns `NoContent()` (204) on success or `NotFound()` if the resource doesn't exist.
 -   **Update DTO**: It's good practice to use a specific DTO for update operations (e.g., `UpdateProductDto`) to control which fields can be modified.
+
+Commit: https://github.com/csokmen/learn-asp.net-core-web-api/commit/68b5a7cc9827341ba002ca14be0d72701301b3b4
