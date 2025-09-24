@@ -52,5 +52,23 @@ namespace LearnWebAPIProject.Services
                 return createdProduct;
             }
         }
+
+        public async Task UpdateProduct(int id, UpdateProductDto productDto)
+        {
+            var query = "UPDATE Products SET Name = @Name WHERE Id = @Id";
+            using (var connection = _context.CreateConnection())
+            {
+                await connection.ExecuteAsync(query, new { Name = productDto.Name, Id = id });
+            }
+        }
+
+        public async Task DeleteProduct(int id)
+        {
+            var query = "DELETE FROM Products WHERE Id = @Id";
+            using (var connection = _context.CreateConnection())
+            {
+                await connection.ExecuteAsync(query, new { id });
+            }
+        }
     }
 }

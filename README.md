@@ -80,3 +80,11 @@ A **Data Transfer Object (DTO)** is an object that carries data between processe
 -   **Controller Update**: The `DapperProductsController` will be updated to receive and return DTOs, while the service layer will handle mapping from DTOs to the internal `Product` entity.
 
 Commit: https://github.com/csokmen/learn-asp.net-core-web-api/commit/a67eccb3534dbddefac935b4e87ce6de9c895fae
+
+## 9. Handling PUT and DELETE Requests
+
+To complete our CRUD (Create, Read, Update, Delete) functionality, we need to handle `PUT` and `DELETE` requests.
+
+-   **`[HttpPut("{id}")]`**: This attribute is used for update operations. A `PUT` request should contain the full updated resource. The action typically returns `NoContent()` (204) on success, `BadRequest()` if the URL ID and body ID don't match, or `NotFound()` if the resource doesn't exist.
+-   **`[HttpDelete("{id}")]`**: This attribute is used for delete operations. The action takes the ID of the resource to delete and returns `NoContent()` (204) on success or `NotFound()` if the resource doesn't exist.
+-   **Update DTO**: It's good practice to use a specific DTO for update operations (e.g., `UpdateProductDto`) to control which fields can be modified.

@@ -54,5 +54,35 @@ namespace LearnWebAPIProject.Controllers
 
             return CreatedAtAction(nameof(GetById), new { id = productDto.Id }, productDto);
         }
+
+        // PUT: api/dapperproducts/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutProduct(int id, UpdateProductDto updateProductDto)
+        {
+            var existingProduct = await _productService.GetProductById(id);
+            if (existingProduct == null)
+            {
+                return NotFound();
+            }
+
+            await _productService.UpdateProduct(id, updateProductDto);
+
+            return NoContent();
+        }
+
+        // DELETE: api/dapperproducts/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProduct(int id)
+        {
+            var existingProduct = await _productService.GetProductById(id);
+            if (existingProduct == null)
+            {
+                return NotFound();
+            }
+
+            await _productService.DeleteProduct(id);
+
+            return NoContent();
+        }
     }
 }

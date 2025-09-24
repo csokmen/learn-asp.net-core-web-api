@@ -8,5 +8,7 @@ namespace LearnWebAPIProject.Services
         Task<IEnumerable<Product>> GetProducts();
         Task<Product?> GetProductById(int id);
         Task<Product> AddProduct(CreateProductDto createProductDto);
+        Task UpdateProduct(int id, UpdateProductDto productDto);
+        Task DeleteProduct(int id);
     }
 }
