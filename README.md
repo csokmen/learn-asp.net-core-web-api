@@ -98,3 +98,5 @@ To avoid repetitive `try-catch` blocks in every controller action, we can implem
 -   **Custom Middleware**: We will create a middleware class that sits in the HTTP request pipeline. It will invoke the next middleware in the sequence and catch any exceptions that occur.
 -   **Standardized Error Response**: When an exception is caught, the middleware will generate a consistent JSON error response (e.g., with a status code of 500) and prevent sensitive exception details from being leaked in a production environment.
 -   **Registration**: The middleware is added to the pipeline in `Program.cs`.
+
+Commit: https://github.com/csokmen/learn-asp.net-core-web-api/commit/c317820b42902bb43fcec87d9a87ee4678d753f7
