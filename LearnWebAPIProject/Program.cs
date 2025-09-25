@@ -1,4 +1,5 @@
 using LearnWebAPIProject.Data;
+using LearnWebAPIProject.Middleware;
 using LearnWebAPIProject.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,10 +22,13 @@ builder.Services.AddScoped<IDapperProductService, DapperProductService>();
 
 var app = builder.Build();
 
+// Register the global exception handler middleware
+app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
+
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())
 //{
-    app.UseSwagger();
+app.UseSwagger();
     app.UseSwaggerUI();
 //}
 

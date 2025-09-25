@@ -90,3 +90,11 @@ To complete our CRUD (Create, Read, Update, Delete) functionality, we need to ha
 -   **Update DTO**: It's good practice to use a specific DTO for update operations (e.g., `UpdateProductDto`) to control which fields can be modified.
 
 Commit: https://github.com/csokmen/learn-asp.net-core-web-api/commit/68b5a7cc9827341ba002ca14be0d72701301b3b4
+
+## 10. Global Error Handling
+
+To avoid repetitive `try-catch` blocks in every controller action, we can implement a global error handling strategy using middleware. This middleware will intercept any unhandled exceptions, log them, and return a standardized error response to the client.
+
+-   **Custom Middleware**: We will create a middleware class that sits in the HTTP request pipeline. It will invoke the next middleware in the sequence and catch any exceptions that occur.
+-   **Standardized Error Response**: When an exception is caught, the middleware will generate a consistent JSON error response (e.g., with a status code of 500) and prevent sensitive exception details from being leaked in a production environment.
+-   **Registration**: The middleware is added to the pipeline in `Program.cs`.
